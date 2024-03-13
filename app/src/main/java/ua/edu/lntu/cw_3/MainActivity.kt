@@ -1,11 +1,13 @@
 package ua.edu.lntu.cw_3
 
 import android.os.Bundle
+import androidx.compose.ui.graphics.Color
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -14,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ua.edu.lntu.cw_3.R
@@ -43,8 +46,11 @@ fun WellnessLayout() {
         item {
             Text(
                 text = "30 днів рецептів",
-                modifier = Modifier.fillMaxWidth(),
-                style = MaterialTheme.typography.titleLarge
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 15.dp),
+                style = MaterialTheme.typography.titleLarge,
+                textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier.height(30.dp))
         }
@@ -76,30 +82,42 @@ fun WellnessLayout() {
 
 @Composable
 fun DayLayout(dayNumber: Int, title: String, description: String, imagePainter: Painter) {
-    Column {
-        Text(
-            text = "Day $dayNumber",
-            modifier = Modifier.fillMaxWidth(),
-            style = MaterialTheme.typography.titleMedium
-        )
-        Text(
-            text = title,
-            modifier = Modifier.fillMaxWidth(),
-            style = MaterialTheme.typography.bodyLarge
-        )
-        Image(
-            painter = imagePainter,
-            contentDescription = null,
-            modifier = Modifier.fillMaxWidth().height(200.dp),
-            contentScale = ContentScale.Crop
-        )
-        Text(
-            text = description,
-            modifier = Modifier.fillMaxWidth(),
-            style = MaterialTheme.typography.bodyMedium
-        )
+    Surface(
+        color = Color(0xFF8A2BE2).copy(alpha = 0.70f),
+        shape = RoundedCornerShape(16.dp),
+        modifier = Modifier.fillMaxWidth().padding(8.dp)
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp)
+        ) {
+            Text(
+                text = "Day $dayNumber",
+                modifier = Modifier.fillMaxWidth(),
+                style = MaterialTheme.typography.titleMedium,
+                color = Color.White
+            )
+            Text(
+                text = title,
+                modifier = Modifier.fillMaxWidth(),
+                style = MaterialTheme.typography.bodyLarge,
+                color = Color.White
+            )
+            Image(
+                painter = imagePainter,
+                contentDescription = null,
+                modifier = Modifier.fillMaxWidth().height(200.dp),
+                contentScale = ContentScale.Crop
+            )
+            Text(
+                text = description,
+                modifier = Modifier.fillMaxWidth(),
+                style = MaterialTheme.typography.bodyMedium,
+                color = Color.White
+            )
+        }
     }
 }
+
 
 @Preview(showBackground = true)
 @Composable
